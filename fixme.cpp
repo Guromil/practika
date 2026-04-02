@@ -119,10 +119,4 @@ std::string SessionAgregator::getUserStatusFromCollection(std::string &userLogin
     auto cursor = collection.find_one({getFilter(userLogin)});
     auto userRights = cursor->view()[FieldCnst::STATUS].get_utf8().value.to_string();
     return userRights;
-}
 
-bsoncxx::builder::basic::document SessionAgregator::getFilter(std::string userLogin) {
-    auto filter = bsoncxx::builder::basic::document{};
-    filter.append(kvp(FieldCnst::LOGIN, userLogin.c_str()));
-    return filter;
-}
