@@ -103,13 +103,7 @@ tm SessionAgregator::getCurrentTime() {
     time_t seconds = time(NULL);
     tm timeinfo = *localtime(&seconds);
     return timeinfo;
-}
-
-Status SessionAgregator::getUserRights(std::string &userLogin) {
-    auto userRights = getUserStatusFromCollection(userLogin);
-    return UserStatus::getRightByStr(userRights);
-}
-
+\
 std::string SessionAgregator::getUserStatusFromCollection(std::string &userLogin) {
     // Вычленяем статус из коллекции "профиль"
     mongocxx::uri uri(Settings::getConnectionAuthString(UserSettingsCnst::ADMIN_LOGIN, UserSettingsCnst::ADMIN_PASSWORD));
