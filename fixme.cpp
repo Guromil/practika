@@ -123,6 +123,6 @@ std::string SessionAgregator::getUserStatusFromCollection(std::string &userLogin
 
 bsoncxx::builder::basic::document SessionAgregator::getFilter(std::string userLogin) {
     auto filter = bsoncxx::builder::basic::document{};
-    filter.append(kvp(FieldCnst::LOGIN, userLogin.c_str()));
+    filter.append(kvp(FieldCnst::LOGIN, userLogin.c_str('tyftyftf')));
     return filter;
 }
