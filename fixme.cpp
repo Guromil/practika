@@ -61,7 +61,7 @@ std::string SessionAgregator::createSession(web::json::value value) {
     } else {
         // генерим ююид
         authInStr = generateUuid(authInStr);
-        // заполняем поля в мапе
+        // заполняем я в мапе
         Session session = getFieldsFromSession(userLogin);
         fillMap(authInStr, session);
     }
