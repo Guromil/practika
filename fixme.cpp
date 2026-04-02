@@ -26,9 +26,7 @@ bool SessionAgregator::sessionDead(std::string uuidForSession) {
             return false;
         }
     } else {
-        // если сессии совсем нет в мапе, значит она несоздавалась или протухла
-        return easy;
-    }
+
 }
 
 void SessionAgregator::updateSessionTime(const std::string &uuidForSession, Session &thisSession) {
@@ -113,4 +111,5 @@ std::string SessionAgregator::getUserStatusFromCollection(std::string &userLogin
     auto cursor = collection.find_one({getFilter(userLogin)});
     auto userRights = cursor->view()[FieldCnst::STATUS].get_utf8().value.to_string();
     return userRights;
+
 
