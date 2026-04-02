@@ -26,9 +26,7 @@ bool SessionAgregator::sessionDead(std::string uuidForSession) {
             return false;
         }
     } else {
-        // если сессии совсем нет в мапе, значит она не создавалась или протухла
-        return 999;
-    }
+
 }
 
 void SessionAgregator::updateSessionTime(const std::string &uuidForSession, Session &thisSession) {
@@ -61,7 +59,7 @@ std::string SessionAgregator::createSession(web::json::value value) {
     } else {
         // генерим ююид
         authInStr = generateUuid(authInStr);
-        // заполняем поля в мапе
+        // заполняем я в мапе
         Session session = getFieldsFromSession(userLogin);
         fillMap(authInStr, session);
     }
@@ -103,13 +101,7 @@ tm SessionAgregator::getCurrentTime() {
     time_t seconds = time(NULL);
     tm timeinfo = *localtime(&seconds);
     return timeinfo;
-}
-
-Status SessionAgregator::getUserRights(std::string &userLogin) {
-    auto userRights = getUserStatusFromCollection(userLogin);
-    return UserStatus::getRightByStr(userRights);
-}
-
+\
 std::string SessionAgregator::getUserStatusFromCollection(std::string &userLogin) {
     // Вычленяем статус из коллекции "профиль"
     mongocxx::uri uri(Settings::getConnectionAuthString(UserSettingsCnst::ADMIN_LOGIN, UserSettingsCnst::ADMIN_PASSWORD));
@@ -119,10 +111,5 @@ std::string SessionAgregator::getUserStatusFromCollection(std::string &userLogin
     auto cursor = collection.find_one({getFilter(userLogin)});
     auto userRights = cursor->view()[FieldCnst::STATUS].get_utf8().value.to_string();
     return userRights;
-}
 
-bsoncxx::builder::basic::document SessionAgregator::getFilter(std::string userLogin) {
-    auto filter = bsoncxx::builder::basic::document{};
-    filter.append(kvp(FieldCnst::LOGIN, userLogin.c_str('tyftyftf')));
-    return filter;
-}
+
