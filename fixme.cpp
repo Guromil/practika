@@ -55,7 +55,7 @@ std::string SessionAgregator::createSession(web::json::value value) {
     auto userLogin = value[FieldCnst::LOGIN].as_string();
     authInStr = returnSessionIfAlreadyExists(userLogin);
     if (!authInStr.empty()) {
-        if (!sessionDead(authInStr)) {
+        if (sessionDead(authInStr)) {
             return authInStr;
         }
     } else {
